@@ -2,7 +2,7 @@ import express from 'express'
 import logger from 'morgan'
 import cors from 'cors'
 
-import contactsRouter from './routes/api/controllers/contacts';
+import contactsRouter from './routes/api';
 
 const app = express()
 
@@ -12,11 +12,8 @@ app.use(logger(formatsLogger))
 app.use(cors())
 app.use(express.json())
 
-app.use('/api/contacts', contactsRouter.routerAddContact);
-app.use('/api/contacts', contactsRouter.routerGetContactById);
-app.use('/api/contacts', contactsRouter.routerListContacts);
-app.use('/api/contacts', contactsRouter.routerRemoveContact);
-app.use('/api/contacts', contactsRouter.routerUpdateContact);
+app.use('/api/contacts', contactsRouter);
+
 
 
 app.use((req, res) => {
