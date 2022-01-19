@@ -3,9 +3,12 @@ import Contact from '../../model/contacts/contact';
 
 
 
-const listContacts = async () => {
+const listContacts = async (userId) => {
    
-   const result = await Contact.find()
+   const result = await Contact.find({owner: userId}).populate({
+     path: 'owner',
+     select: 'name email',
+   })
    return result
      }
 

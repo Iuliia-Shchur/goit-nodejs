@@ -13,7 +13,7 @@ const login = async (req, res, next) => {
     const token = authService.getToken(user)
     await authService.setToken(user.id, token)
   
-    res.status(200).json({status: 'success', code: '200', data: {token}})
+    res.status(200).json({status: 'Unauthorized', code: '200', data: {token}})
   }
 
   export default login;

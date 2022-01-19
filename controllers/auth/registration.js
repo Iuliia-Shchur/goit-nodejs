@@ -8,7 +8,7 @@ const isUserExist = await authService.isUserExist(email)
 if (isUserExist) {
     return res 
     .status(409)
-    .json({status: 'error', code: '409', message: 'Email in use'})
+    .json({status: 'Conflict', code: '409', message: 'Email in use'})
 }
 
 const data = await authService.create(req.body)

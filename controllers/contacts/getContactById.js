@@ -2,8 +2,10 @@
 import repositoryContacts from "../../repository/contactsMethods/index";
 
 const getContactById =  async (req, res, next) => {
+  
     const {id} = req.params;
-    const contact = await repositoryContacts.getContactById(id)
+    const {id: userId} = req.user
+    const contact = await repositoryContacts.getContactById(userId, id)
     if (contact) {
      return res.status(200).json(contact)
    }

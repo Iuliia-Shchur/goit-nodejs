@@ -13,7 +13,7 @@ import guard from "../../middlewares/guard";
 const router = express.Router();
 
 router.get("/", [guard], getContacts);
-router.get("./:id", [guard, validateId], getContactById);
+router.get("/:id", [guard, validateId], getContactById);
 router.post("/", [guard, validateCreate], addContact);
 router.delete("/:id", [guard, validateId], removeContact);
 router.put("/:id", [guard, validateUpdate], updateContact);

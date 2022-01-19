@@ -1,10 +1,10 @@
 import Contact from '../../model/contacts/contact';
 
 
-const updateContact = async (contactId, body) => {
+const updateContact = async (userId, contactId, body) => {
   
-  const result = await Contact.findByIdAndUpdate(
-    contactId, 
+  const result = await Contact.findOneAndUpdate(
+    {_id: contactId, owner: userId}, 
     {...body},
     {new: true},
     )
