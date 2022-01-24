@@ -44,3 +44,4 @@ async setToken(id, token) {
 }
 
 export default AuthService;
+
