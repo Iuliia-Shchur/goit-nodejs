@@ -4,7 +4,7 @@ import cors from 'cors'
 
 import contactsRouter from './routes/api';
 import authRouter from './routes/api/auth';
-import uploadRouter from './routes/api/public/avatar';
+import uploadRouter from './routes/api/upload';
 
 const app = express()
 
