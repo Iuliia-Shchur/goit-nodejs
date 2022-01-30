@@ -1,5 +1,7 @@
 import AuthService from "../../service/auth";
+import {EmailService, SenderSendgrid} from '../../service/email';
 const authService = new AuthService();
+
 
 class AuthController {
 
@@ -13,8 +15,22 @@ class AuthController {
             .json({status: 'Conflict', code: '409', message: 'Email in use'})
         }
         
-        const data = await authService.create(req.body)
-        res.status(200).json({status: 'success', code: '200', data})
+        const userData = await authService.create(req.body)
+        const emailService = new EmailService(
+          process.env.NODE_ENV, 
+          new SenderSendgrid())
+          
+        const isSent = await emailService.sendVerifyEmail(
+          email, 
+          userData.name, 
+          userData.verifyTokenEmail,
+          )
+        delete userData.verifyTokenEmail
+        res.status(200).json({
+          status: 'success', 
+          code: '200', 
+          data: {...userData, isSentEmailVerified: isSent},
+        })
             
           }
 

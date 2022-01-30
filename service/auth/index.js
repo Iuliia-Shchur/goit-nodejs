@@ -12,19 +12,20 @@ async isUserExist(email) {
 }
 
 async create(body) {
-    const {id, name, email, avatar} = await Users.create(body)
+    const {id, name, email, avatar, verifyTokenEmail} = await Users.create(body)
     return {
        id, 
        name,
        email,
        avatar,
+       verifyTokenEmail,
     }
 }
 
 async getUser(email, password) {
     const user = await Users.findByEmail(email)
     const isValidPassword = await user?.isValidPassword(password)
-    if(!isValidPassword) {
+    if(!isValidPassword || !user?.isVerified) {
         return null
     }
     return user
