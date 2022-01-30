@@ -19,7 +19,7 @@ class AuthController {
         const emailService = new EmailService(
           process.env.NODE_ENV, 
           new SenderSendgrid())
-          
+
         const isSent = await emailService.sendVerifyEmail(
           email, 
           userData.name, 
@@ -46,7 +46,7 @@ class AuthController {
         const token = authService.getToken(user)
         await authService.setToken(user.id, token)
       
-        res.status(200).json({status: 'Unauthorized', code: '200', data: {token}})
+        res.status(200).json({status: 'Success', code: '200', data: {token}})
       }
 
       async logout  (req, res, next)  {

@@ -25,7 +25,7 @@ async create(body) {
 async getUser(email, password) {
     const user = await Users.findByEmail(email)
     const isValidPassword = await user?.isValidPassword(password)
-    if(!isValidPassword || !user?.isVerified) {
+    if(!isValidPassword || !user?.isVerify) {
         return null
     }
     return user
